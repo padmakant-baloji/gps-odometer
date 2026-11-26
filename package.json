@@ -1,20 +1,52 @@
 {
   "name": "gps-odometer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn noisy phone GPS trails into accurate kilometres: drift and glitch filtering, gap estimation, and automatic trip-end detection. Zero dependencies.",
-  "keywords": ["gps", "distance", "mileage", "odometer", "haversine", "trip", "location", "tracking", "geolocation", "react-native", "expo"],
+  "keywords": [
+    "gps",
+    "distance",
+    "mileage",
+    "odometer",
+    "haversine",
+    "trip",
+    "location",
+    "tracking",
+    "geolocation",
+    "react-native",
+    "expo"
+  ],
   "license": "MIT",
   "author": "Padmakant Baloji",
-  "repository": { "type": "git", "url": "git+https://github.com/padmakant-baloji/gps-odometer.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/padmakant-baloji/gps-odometer.git"
+  },
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "files": ["dist", "README.md", "LICENSE"],
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && tsc -p tsconfig.cjs.json && node -e \"require('fs').writeFileSync('dist/cjs/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\"",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
@@ -22,5 +54,6 @@
   "devDependencies": {
     "typescript": "^5.6.3",
     "vitest": "^3.2.4"
-  }
+  },
+  "module": "./dist/esm/index.js"
 }

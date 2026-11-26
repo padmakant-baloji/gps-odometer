@@ -1,1 +1,1 @@
-{ "extends": "./tsconfig.json", "compilerOptions": { "rootDir": "src" }, "include": ["src"] }
+{ "extends": "./tsconfig.json", "compilerOptions": { "rootDir": "src", "outDir": "dist/esm", "sourceMap": false }, "include": ["src"] }
