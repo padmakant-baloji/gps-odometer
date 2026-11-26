@@ -1,0 +1,26 @@
+{
+  "name": "gps-odometer",
+  "version": "0.1.0",
+  "description": "Turn noisy phone GPS trails into accurate kilometres: drift and glitch filtering, gap estimation, and automatic trip-end detection. Zero dependencies.",
+  "keywords": ["gps", "distance", "mileage", "odometer", "haversine", "trip", "location", "tracking", "geolocation", "react-native", "expo"],
+  "license": "MIT",
+  "author": "Padmakant Baloji",
+  "repository": { "type": "git", "url": "git+https://github.com/padmakant-baloji/gps-odometer.git" },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^3.2.4"
+  }
+}
